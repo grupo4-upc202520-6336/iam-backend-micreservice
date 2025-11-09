@@ -1,29 +1,17 @@
 package com.agrocontrol.backend.iam.application.internal.outboundservices.acl;
 
+/**
+ * ExternalProfileService interface used to create external profiles for users.
+ */
+public interface ExternalProfileService {
+    /**
+     * Create an agricultural producer profile and return its id (or 0L on failure)
+     */
+    Long createAgriculturalProducer(String fullName, String city, String country, String phone, String dni, Long userId);
 
-import com.agrocontrol.backend.profiles.interfaces.acl.ProfilesContextFacade;
-import org.springframework.stereotype.Service;
-
-@Service
-public class ExternalProfileService {
-    private final ProfilesContextFacade profileContextFacade;
-
-    public ExternalProfileService(ProfilesContextFacade profileContextFacade) {
-        this.profileContextFacade = profileContextFacade;
-    }
-
-
-    public Long createAgriculturalProducer(String fullName, String city, String country,
-                                           String phone, String dni, Long userId) {
-        return profileContextFacade.createAgriculturalProducer(
-                fullName, city, country, phone, dni, userId
-        );
-    }
-
-    public Long createDistributor(String fullName, String city, String country,
-                                  String phone, String companyName, String ruc, Long userId){
-        return profileContextFacade.createDistributor(
-                fullName, city, country, phone, companyName, ruc, userId
-        );
-    }
+    /**
+     * Create a distributor profile and return its id (or 0L on failure)
+     */
+    Long createDistributor(String fullName, String city, String country, String phone, String companyName, String ruc, Long userId);
 }
+
